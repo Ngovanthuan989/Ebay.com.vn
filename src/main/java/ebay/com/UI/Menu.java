@@ -11,7 +11,6 @@ import ebay.com.bl.CustomerBL;
 import ebay.com.bl.OptionsBL;
 import ebay.com.bl.ProductBL;
 import ebay.com.bl.SuppilerBL;
-import ebay.com.dal.OptionsDAL;
 
 public class Menu {
     static Scanner sc = new Scanner(System.in);
