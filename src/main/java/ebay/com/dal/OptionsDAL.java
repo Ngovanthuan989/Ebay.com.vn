@@ -17,7 +17,7 @@ public class OptionsDAL {
         Connection connection = JDBCConnection.getJDBConnection();
 
         try {
-            String sql="insert into tbl_options(tbl_options_name,tbl_options_date)values(?,?,?)";
+            String sql="insert into tbl_options(tbl_options_name,tbl_options_date)values(?,?)";
             preparedStatement = (PreparedStatement)connection.prepareStatement(sql);
             preparedStatement.setString(1, op.getTbl_options_name());
             preparedStatement.setString(2, op.getTbl_options_date());

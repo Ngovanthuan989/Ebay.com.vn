@@ -165,6 +165,7 @@ public class Menu {
                     break;
                 case "4":
                     ClearTheScreen.clrscr();
+                    Options_Management();
 
 
                     break;
@@ -212,8 +213,8 @@ public class Menu {
 
                     break;
                 case "3":
-                ClearTheScreen.clrscr();
-                Address_Shipping();
+                    ClearTheScreen.clrscr();
+                    Address_Shipping();
 
                     break;
                 case "4":
@@ -424,7 +425,7 @@ public class Menu {
             System.out.println("----------------------------------------------------------");
             System.out.println("|1.Add New Options                                       |");
             System.out.println("----------------------------------------------------------");
-            System.out.println("|2.Update Options                                        |");
+            System.out.println("|2.List Options                                          |");
             System.out.println("----------------------------------------------------------");
             System.out.println("|0.Return To The Previous Page                           |");
             System.out.println("----------------------------------------------------------");
