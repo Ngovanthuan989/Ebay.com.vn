@@ -8,8 +8,10 @@ import ebay.com.bl.AdminBL;
 import ebay.com.bl.Brand_ProductBL;
 import ebay.com.bl.Category_ProductBL;
 import ebay.com.bl.CustomerBL;
+import ebay.com.bl.OptionsBL;
 import ebay.com.bl.ProductBL;
 import ebay.com.bl.SuppilerBL;
+import ebay.com.dal.OptionsDAL;
 
 public class Menu {
     static Scanner sc = new Scanner(System.in);
@@ -138,9 +140,11 @@ public class Menu {
             System.out.println("-------------------------------------------------------");
             System.out.println("|3.Brand Management                                   |");
             System.out.println("-------------------------------------------------------");
-            System.out.println("|4.Order Management                                   |");
+            System.out.println("|4.Options Management                                 |");
             System.out.println("-------------------------------------------------------");
-            System.out.println("|5.Revenue Management                                 |");
+            System.out.println("|5.Order Management                                   |");
+            System.out.println("-------------------------------------------------------");
+            System.out.println("|6.Revenue Management                                 |");
             System.out.println("-------------------------------------------------------");
             System.out.println("|0.Return To The Previous Page                        |");
             System.out.println("-------------------------------------------------------");
@@ -161,6 +165,8 @@ public class Menu {
                     Brand_Management();
                     break;
                 case "4":
+                    ClearTheScreen.clrscr();
+
 
                     break;
                 case "5":
@@ -296,8 +302,8 @@ public class Menu {
 
             switch (choice) {
                 case "1":
-                ClearTheScreen.clrscr();
-                Category_ProductBL.add_category_product();
+                    ClearTheScreen.clrscr();
+                    Category_ProductBL.add_category_product();
                     break;
                 case "2":
                   ClearTheScreen.clrscr();
@@ -345,12 +351,12 @@ public class Menu {
                     Brand_ProductBL.add_brand_product();
                     break;
                 case "2":
-                  ClearTheScreen.clrscr();
-                  Brand_ProductBL.edit_brand_product();
+                    ClearTheScreen.clrscr();
+                    Brand_ProductBL.edit_brand_product();
                     break;
                 case "3":
-                   ClearTheScreen.clrscr();
-                   Brand_ProductBL.show_brand_product();
+                    ClearTheScreen.clrscr();
+                    Brand_ProductBL.show_brand_product();
                     break;
                 case "0":
                     ClearTheScreen.clrscr();
@@ -397,6 +403,45 @@ public class Menu {
                    ProductBL.show_product_supplier();
 
                     break;
+                case "0":
+                    ClearTheScreen.clrscr();
+                    Seller();
+                    break;
+
+
+                default:
+                    ClearTheScreen.clrscr();
+                    System.out.println("There is no function for this .Re-Enter:");
+                    break;
+            }
+        }
+
+
+    }
+    public static void Options_Management() throws SQLException{
+        String choice;
+        while (true) {
+            System.out.println(" ====================Options_Management===================");
+            System.out.println("----------------------------------------------------------");
+            System.out.println("|1.Add New Options                                       |");
+            System.out.println("----------------------------------------------------------");
+            System.out.println("|2.Update Options                                        |");
+            System.out.println("----------------------------------------------------------");
+            System.out.println("|0.Return To The Previous Page                           |");
+            System.out.println("----------------------------------------------------------");
+            System.out.println("   ==>>Inviting You To Choose:            ");
+            choice =sc.nextLine();
+
+            switch (choice) {
+                case "1":
+                    ClearTheScreen.clrscr();
+                    OptionsBL.add_new_options();
+                    break;
+                case "2":
+                    ClearTheScreen.clrscr();
+                    OptionsBL.show_options();
+                    break;
+
                 case "0":
                     ClearTheScreen.clrscr();
                     Seller();
