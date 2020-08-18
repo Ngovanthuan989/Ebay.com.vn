@@ -40,7 +40,7 @@ public class Product_OptionsDAL {
         Connection connection = JDBCConnection.getJDBConnection();
 
         try {
-            String sql = "update product_options set product_id=?,tbl_options_id=?,option_name=? where options_id='"+options_id+"'";
+            String sql = "update product_options set product_id=?,tbl_options_id=?,options_name=? where options_id='"+options_id+"'";
             preparedStatement = (PreparedStatement)connection.prepareStatement(sql);
             preparedStatement.setInt(1, pro.getProduct_id());
             preparedStatement.setInt(2, pro.getTbl_options_id());

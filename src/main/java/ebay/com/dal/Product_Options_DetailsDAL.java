@@ -10,13 +10,13 @@ import ebay.com.connection.JDBCConnection;
 import ebay.com.persistance.Product_Options_Details;
 
 public class Product_Options_DetailsDAL {
-    public ArrayList<Product_Options_Details>select_options_details()throws SQLException{
+    public ArrayList<Product_Options_Details>select_options_details(int supplier_id)throws SQLException{
         Connection connection = JDBCConnection.getJDBConnection();
         Statement statement = connection.createStatement();
 
         ArrayList<Product_Options_Details> List = new ArrayList<>();
         try {
-            String sql = " call select_options_details();";
+            String sql = " call select_options_details('"+supplier_id+"');";
             ResultSet rs = statement.executeQuery(sql);
 
             while (rs.next()) {

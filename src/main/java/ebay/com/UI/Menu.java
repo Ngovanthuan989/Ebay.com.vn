@@ -10,6 +10,8 @@ import ebay.com.bl.Category_ProductBL;
 import ebay.com.bl.CustomerBL;
 import ebay.com.bl.OptionsBL;
 import ebay.com.bl.ProductBL;
+import ebay.com.bl.Product_OptionsBL;
+import ebay.com.bl.Product_Options_DetailsBL;
 import ebay.com.bl.SuppilerBL;
 
 public class Menu {
@@ -143,7 +145,9 @@ public class Menu {
             System.out.println("-------------------------------------------------------");
             System.out.println("|5.Order Management                                   |");
             System.out.println("-------------------------------------------------------");
-            System.out.println("|6.Revenue Management                                 |");
+            System.out.println("|6.Product_Options Management                         |");
+            System.out.println("-------------------------------------------------------");
+            System.out.println("|7.Revenue Management                                 |");
             System.out.println("-------------------------------------------------------");
             System.out.println("|0.Return To The Previous Page                        |");
             System.out.println("-------------------------------------------------------");
@@ -172,6 +176,15 @@ public class Menu {
                 case "5":
 
                     break;
+                case "6":
+                   ClearTheScreen.clrscr();
+                   Product_Options_Management();
+
+
+                    break;
+                case "7":
+
+                    break;
 
                 case "0":
                     ClearTheScreen.clrscr();
@@ -187,6 +200,54 @@ public class Menu {
 
     }
 
+    public static void Product_Options_Management() throws SQLException{
+        String choice;
+        while (true) {
+            System.out.println("==========================Product_Options Management=========================");
+            System.out.println("-----------------------------------------------------------------------------");
+            System.out.println("|1.Add New Product_Options                                                  |");
+            System.out.println("-----------------------------------------------------------------------------");
+            System.out.println("|2.Update Product_Options                                                   |");
+            System.out.println("-----------------------------------------------------------------------------");
+            System.out.println("|3.List Product_Options                                                     |");
+            System.out.println("-----------------------------------------------------------------------------");
+            System.out.println("|0.Return To The Previous Page                                              |");
+            System.out.println("-----------------------------------------------------------------------------");
+            System.out.println("   ==>>Inviting You To Choose:            ");
+            choice =sc.nextLine();
+
+            switch (choice) {
+                case "1":
+                   ClearTheScreen.clrscr();
+                   Product_OptionsBL.add_product_options();
+
+                    break;
+                case "2":
+                    ClearTheScreen.clrscr();
+                    Product_OptionsBL.update_product_options();
+
+                    break;
+                case "3":
+                    ClearTheScreen.clrscr();
+                    Product_Options_DetailsBL.show_options_details();
+                    break;
+
+
+                case "0":
+
+                    ClearTheScreen.clrscr();
+                    Seller();
+
+                    break;
+
+                default:
+                    ClearTheScreen.clrscr();
+                    System.out.println("There is no function for this .Re-Enter:");
+                    break;
+            }
+        }
+
+    }
     public static void Customer() throws SQLException{
         String choice;
         while (true) {
