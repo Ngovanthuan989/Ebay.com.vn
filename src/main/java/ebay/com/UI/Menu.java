@@ -12,6 +12,7 @@ import ebay.com.bl.OptionsBL;
 import ebay.com.bl.ProductBL;
 import ebay.com.bl.Product_OptionsBL;
 import ebay.com.bl.Product_Options_DetailsBL;
+import ebay.com.bl.ShippingmentBL;
 import ebay.com.bl.SuppilerBL;
 
 public class Menu {
@@ -65,8 +66,9 @@ public class Menu {
                     Seller();
                     break;
                 case "6":
-                    AdminBL.AdminLogin();
+
                     ClearTheScreen.clrscr();
+                    AdminBL.AdminLogin();
                     Admin();
 
                     break;
@@ -114,6 +116,11 @@ public class Menu {
                 case "3":
 
                     break;
+                case "4":
+                    ClearTheScreen.clrscr();
+                    ShippingMethod_Management();
+
+                    break;
                 case "0":
                     ClearTheScreen.clrscr();
                     ShowMenu();
@@ -127,6 +134,52 @@ public class Menu {
 
         }
 
+
+    }
+    public static void ShippingMethod_Management() throws SQLException{
+        String choice;
+        while (true) {
+            System.out.println("==========================ShippingMethod_Management==========================");
+            System.out.println("-----------------------------------------------------------------------------");
+            System.out.println("|1.Add New ShippingMethod                                                   |");
+            System.out.println("-----------------------------------------------------------------------------");
+            System.out.println("|2.Update ShippingMethod                                                    |");
+            System.out.println("-----------------------------------------------------------------------------");
+            System.out.println("|3.List ShippingMethod                                                      |");
+            System.out.println("-----------------------------------------------------------------------------");
+            System.out.println("|0.Return To The Previous Page                                              |");
+            System.out.println("-----------------------------------------------------------------------------");
+            System.out.println("   ==>>Inviting You To Choose:            ");
+            choice =sc.nextLine();
+
+            switch (choice) {
+                case "1":
+                   ClearTheScreen.clrscr();
+                    ShippingmentBL.add_shippingment();
+                    break;
+                case "2":
+                    ClearTheScreen.clrscr();
+                    ShippingmentBL.update_shippingment();
+                    break;
+                case "3":
+                    ClearTheScreen.clrscr();
+                    ShippingmentBL.show_shippinment();
+                    break;
+
+
+                case "0":
+
+                    ClearTheScreen.clrscr();
+                    Admin();
+
+                    break;
+
+                default:
+                    ClearTheScreen.clrscr();
+                    System.out.println("There is no function for this .Re-Enter:");
+                    break;
+            }
+        }
 
     }
 
