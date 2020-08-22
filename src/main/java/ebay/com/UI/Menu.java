@@ -9,6 +9,7 @@ import ebay.com.bl.Brand_ProductBL;
 import ebay.com.bl.Category_ProductBL;
 import ebay.com.bl.CustomerBL;
 import ebay.com.bl.OptionsBL;
+import ebay.com.bl.PaymentBL;
 import ebay.com.bl.ProductBL;
 import ebay.com.bl.Product_OptionsBL;
 import ebay.com.bl.Product_Options_DetailsBL;
@@ -100,6 +101,8 @@ public class Menu {
             System.out.println("-----------------------------------------------------------");
             System.out.println("|4.ShippingMethod Management                              |");
             System.out.println("-----------------------------------------------------------");
+            System.out.println("|5.Payment Management                                     |");
+            System.out.println("-----------------------------------------------------------");
             System.out.println("|0.Return To The Previous Page                            |");
             System.out.println("-----------------------------------------------------------");
             System.out.println("   ==>>Inviting You To Choose:            ");
@@ -121,6 +124,11 @@ public class Menu {
                     ShippingMethod_Management();
 
                     break;
+                case "5":
+                    ClearTheScreen.clrscr();
+                    Payment_Management();
+
+                    break;
                 case "0":
                     ClearTheScreen.clrscr();
                     ShowMenu();
@@ -135,6 +143,51 @@ public class Menu {
         }
 
 
+    }
+    public static void Payment_Management()throws SQLException{
+        String choice;
+        while (true) {
+            System.out.println("==========================Payment_Management=================================");
+            System.out.println("-----------------------------------------------------------------------------");
+            System.out.println("|1.Add New PaymentMethod                                                    |");
+            System.out.println("-----------------------------------------------------------------------------");
+            System.out.println("|2.Update PaymentMethod                                                     |");
+            System.out.println("-----------------------------------------------------------------------------");
+            System.out.println("|3.List PaymentMethod                                                       |");
+            System.out.println("-----------------------------------------------------------------------------");
+            System.out.println("|0.Return To The Previous Page                                              |");
+            System.out.println("-----------------------------------------------------------------------------");
+            System.out.println("   ==>>Inviting You To Choose:            ");
+            choice =sc.nextLine();
+
+            switch (choice) {
+                case "1":
+                   ClearTheScreen.clrscr();
+                   PaymentBL.add_payment();
+                    break;
+                case "2":
+                    ClearTheScreen.clrscr();
+                    PaymentBL.edit_payment();
+                    break;
+                case "3":
+                    ClearTheScreen.clrscr();
+                    PaymentBL.show_payment();
+                    break;
+
+
+                case "0":
+
+                    ClearTheScreen.clrscr();
+                    Admin();
+
+                    break;
+
+                default:
+                    ClearTheScreen.clrscr();
+                    System.out.println("There is no function for this .Re-Enter:");
+                    break;
+            }
+        }
     }
     public static void ShippingMethod_Management() throws SQLException{
         String choice;
