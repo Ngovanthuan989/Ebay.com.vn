@@ -77,4 +77,38 @@ public class CustomerDAL {
       }
       return null;
   }
+  public ArrayList<Customer> SelectCustomerID(int cu_id) throws SQLException{
+    Connection connection = JDBCConnection.getJDBConnection();
+    Statement statement = connection.createStatement();
+    ArrayList<Customer> List = new ArrayList<>();
+
+    try {
+        String sql = "select * from customer where customer_id='"+cu_id+"'";
+
+        ResultSet rs = statement.executeQuery(sql);
+
+        while (rs.next()) {
+          int customer_ID = rs.getInt(1);
+          String customer_Name = rs.getString(2);
+          String address = rs.getString(3);
+          String mail = rs.getString(4);
+          String password = rs.getString(5);
+          String phone_Number = rs.getString(6);
+
+          List.add(new Customer(customer_ID, customer_Name, address, mail, password, phone_Number));
+        }
+        return List;
+
+    } catch (SQLException ex) {
+        //TODO: handle exception
+        ex.printStackTrace();
+    }finally{
+        try {
+            statement.close();
+        } catch (SQLException ex) {
+            //TODO: handle exception
+        }
+    }
+    return null;
+}
 }

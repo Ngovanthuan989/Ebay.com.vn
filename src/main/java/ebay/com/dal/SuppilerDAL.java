@@ -71,4 +71,35 @@ public class SuppilerDAL {
 
         return null;
     }
+    public ArrayList<Suppiler> SelectSuppilerID(int supplierID) throws SQLException{
+        Connection connection = JDBCConnection.getJDBConnection();
+        Statement statement = connection.createStatement();
+
+        ArrayList <Suppiler> List = new ArrayList<>();
+
+        try {
+            String sql = "Select * from suppiler where suppiler_id='"+supplierID+"'";
+
+            ResultSet rs = statement.executeQuery(sql);
+
+            while (rs.next()) {
+               int suppiler_id = rs.getInt(1);
+               String suppiler_name = rs.getString(2);
+               String suppiler_address = rs.getString(3);
+               String suppiler_email = rs.getString(4);
+               String suppiler_pass = rs.getString(5);
+               String suppiler_phone = rs.getString(6);
+               String suppiler_status = rs.getString(7);
+
+               List.add(new Suppiler(suppiler_id, suppiler_name, suppiler_address, suppiler_email, suppiler_pass, suppiler_phone, suppiler_status));
+            }
+
+            return List;
+        } catch (SQLException ex) {
+            //TODO: handle exception
+            ex.printStackTrace();
+        }
+
+        return null;
+    }
 }

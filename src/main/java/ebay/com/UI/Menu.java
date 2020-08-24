@@ -15,6 +15,7 @@ import ebay.com.bl.Product_OptionsBL;
 import ebay.com.bl.Product_Options_DetailsBL;
 import ebay.com.bl.ShippingmentBL;
 import ebay.com.bl.SuppilerBL;
+import ebay.com.persistance.application;
 
 public class Menu {
     static Scanner sc = new Scanner(System.in);
@@ -57,19 +58,22 @@ public class Menu {
                     break;
                 case "4":
                     ClearTheScreen.clrscr();
-                    CustomerBL.LoginCustomer();
+                    CustomerBL.opening_question();
+                    ClearTheScreen.clrscr();
                     Customer();
 
                     break;
                 case "5":
                     ClearTheScreen.clrscr();
-                    SuppilerBL.LoginSuppiler();
+                    SuppilerBL.opening_question();
+                    ClearTheScreen.clrscr();
                     Seller();
                     break;
                 case "6":
 
                     ClearTheScreen.clrscr();
                     AdminBL.AdminLogin();
+                    ClearTheScreen.clrscr();
                     Admin();
 
                     break;
@@ -92,6 +96,7 @@ public class Menu {
         String choice;
         while (true) {
             System.out.println("=======================Admin Dashboard=====================");
+            System.out.println("| [Hello: "+application.name_admin+"]                                 |");
             System.out.println("-----------------------------------------------------------");
             System.out.println("|1.Seller Management                                      |");
             System.out.println("-----------------------------------------------------------");
@@ -240,6 +245,7 @@ public class Menu {
         String choice;
         while (true) {
             System.out.println("=========================Seller========================");
+            System.out.println("|  [Hello:"+application.name_supplier+"]              |");
             System.out.println("-------------------------------------------------------");
             System.out.println("|1.Product Management                                 |");
             System.out.println("-------------------------------------------------------");
@@ -254,6 +260,8 @@ public class Menu {
             System.out.println("|6.Product_Options Management                         |");
             System.out.println("-------------------------------------------------------");
             System.out.println("|7.Revenue Management                                 |");
+            System.out.println("-------------------------------------------------------");
+            System.out.println("|8.See Supplier Profile                               |");
             System.out.println("-------------------------------------------------------");
             System.out.println("|0.Return To The Previous Page                        |");
             System.out.println("-------------------------------------------------------");
@@ -290,6 +298,10 @@ public class Menu {
                     break;
                 case "7":
 
+                    break;
+                case "8":
+                    ClearTheScreen.clrscr();
+                    SuppilerBL.show_supplier();
                     break;
 
                 case "0":
@@ -358,8 +370,9 @@ public class Menu {
         String choice;
         while (true) {
             System.out.println("==========================Customer=========================");
+            System.out.println("|  [------Hello: "+application.name_customer+"------]     |");
             System.out.println("-----------------------------------------------------------");
-            System.out.println("|1.Xem thông tin tài khoản                                |");
+            System.out.println("|1.See User Profile                                       |");
             System.out.println("-----------------------------------------------------------");
             System.out.println("|2.Lịch sử mua hàng                                       |");
             System.out.println("-----------------------------------------------------------");
@@ -374,7 +387,8 @@ public class Menu {
 
             switch (choice) {
                 case "1":
-
+                   ClearTheScreen.clrscr();
+                   CustomerBL.showCustomer();
                     break;
                 case "2":
 
@@ -621,7 +635,5 @@ public class Menu {
                     break;
             }
         }
-
-
     }
 }

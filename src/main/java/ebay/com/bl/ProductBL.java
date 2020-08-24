@@ -9,6 +9,7 @@ import java.util.Scanner;
 import ebay.com.UI.CommandLineTable;
 import ebay.com.dal.ProductDAL;
 import ebay.com.persistance.Product;
+import ebay.com.persistance.application;
 
 public class ProductBL {
 
@@ -26,9 +27,7 @@ public class ProductBL {
         System.out.println("Enter Product_Name:");
         String product_name = sc.nextLine();
         pr.setProduct_name(product_name);
-        System.out.println("Enter Supplier_ID:");
-        int supplier_id = Integer.parseInt(sc.nextLine());
-        pr.setSupplier_id(supplier_id);
+        pr.setSupplier_id(application.id_supplier);
         System.out.println("Enter Category_ID:");
         int category_id = Integer.parseInt(sc.nextLine());
         pr.setCategory_id(category_id);
@@ -75,9 +74,7 @@ public class ProductBL {
         System.out.println("Update Product_Name:");
         String product_name = sc.nextLine();
         pr.setProduct_name(product_name);
-        System.out.println("Update Supplier_ID:");
-        int supplier_id = Integer.parseInt(sc.nextLine());
-        pr.setSupplier_id(supplier_id);
+        pr.setSupplier_id(application.id_supplier);
         System.out.println("Update Category_ID:");
         int category_id = Integer.parseInt(sc.nextLine());
         pr.setCategory_id(category_id);
@@ -115,10 +112,8 @@ public class ProductBL {
     }
 
     public static void show_product_supplier() throws SQLException{
-        System.out.println("Enter Supplier_ID:");
-        int Supplier_ID = Integer.parseInt(sc.nextLine());
 
-        PR = new ProductDAL().select_product(Supplier_ID);
+        PR = new ProductDAL().select_product(application.id_supplier);
 
         CommandLineTable CT = new CommandLineTable();
         CT.setShowVerticalLines(true);

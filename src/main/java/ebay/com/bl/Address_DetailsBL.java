@@ -8,6 +8,7 @@ import java.util.Scanner;
 import ebay.com.UI.CommandLineTable;
 import ebay.com.dal.Address_DetailsDAL;
 import ebay.com.persistance.Address_Details;
+import ebay.com.persistance.application;
 
 public class Address_DetailsBL {
 
@@ -19,9 +20,7 @@ public class Address_DetailsBL {
         Address_Details ad = new Address_Details();
         Address_DetailsDAL adt = new Address_DetailsDAL();
 
-        System.out.println("Enter Customer_id:");
-        int customer_id = Integer.parseInt(sc.nextLine());
-        ad.setCustomer_id(customer_id);
+        ad.setCustomer_id(application.id_customer);
         System.out.println("Enter Address_name");
         String address_name = sc.nextLine();
         ad.setAddress_name(address_name);
@@ -38,9 +37,7 @@ public class Address_DetailsBL {
         System.out.println("Enter Address_id:");
         int address_id = Integer.parseInt(sc.nextLine());
         ad.setAddress_id(address_id);
-        System.out.println("Enter Customer_id:");
-        int customer_id = Integer.parseInt(sc.nextLine());
-        ad.setCustomer_id(customer_id);
+        ad.setCustomer_id(application.id_customer);
         System.out.println("Enter Address_Name:");
         String address_name = sc.nextLine();
         ad.setAddress_name(address_name);
@@ -52,10 +49,8 @@ public class Address_DetailsBL {
     }
 
     public static void show_address_details()throws SQLException{
-        System.out.println("Enter Customer_ID:");
-        int customer_id = Integer.parseInt(sc.nextLine());
 
-        ADT = new Address_DetailsDAL().select_address_details(customer_id);
+        ADT = new Address_DetailsDAL().select_address_details(application.id_customer);
 
         CommandLineTable CT = new CommandLineTable();
         CT.setShowVerticalLines(true);

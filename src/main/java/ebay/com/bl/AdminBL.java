@@ -6,7 +6,9 @@ import java.util.List;
 import java.util.Scanner;
 
 import ebay.com.dal.AdminDAL;
+import ebay.com.encrypt.PasswordField;
 import ebay.com.persistance.Admin;
+import ebay.com.persistance.application;
 
 public class AdminBL {
     static List<Admin> AD = new ArrayList<>();
@@ -18,19 +20,23 @@ public class AdminBL {
         boolean check = true;
 
         while (check) {
-            System.out.println("Enter Admin Email:");
+            System.out.println("----------------------------Admin Login--------------------------");
+            System.out.print(" 1.Enter Admin Email:");
             String email = sc .nextLine();
             ad.setAdmin_email(email);
-            System.out.println("Enter Admin Password:");
-            String pass = sc.nextLine();
-            ad.setAdmin_password(pass);
+            System.out.println("-----------------------------------------------------");
+            String password = PasswordField.readPassword("Enter Admin password: ");
+            // System.out.println("The password entered is: "+password);
+            ad.setAdmin_password(password);
 
-            AD = new AdminDAL().SelectAdmin(email, pass);
+            AD = new AdminDAL().SelectAdmin(email, password);
             int kt = 0;
 
             for (int i = 0; i < AD.size(); i++) {
-                if (AD.get(i).getAdmin_email().equals(email) && AD.get(i).getAdmin_password().equals(pass)) {
+                if (AD.get(i).getAdmin_email().equals(email) && AD.get(i).getAdmin_password().equals(password)) {
                     kt = 1;
+                    application.id_admin=AD.get(i).getAdmin_id();
+                    application.name_admin=AD.get(i).getAdmin_name();
                 }
             }
             if (kt == 1) {
@@ -44,10 +50,6 @@ public class AdminBL {
             }
 
         }
-
-
-
-
     }
 
 }
