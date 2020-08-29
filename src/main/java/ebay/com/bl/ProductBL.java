@@ -6,6 +6,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Scanner;
 
+import ebay.com.UI.ClearTheScreen;
 import ebay.com.UI.CommandLineTable;
 import ebay.com.dal.ProductDAL;
 import ebay.com.persistance.Product;
@@ -126,5 +127,56 @@ public class ProductBL {
            String.valueOf(PR.get(i).getProduct_status()),String.valueOf(PR.get(i).getProduct_date()));
         }
         CT.print();
+    }
+
+
+    public static void show_product_home()throws SQLException{
+        PR = new ProductDAL().select_productID();
+        CommandLineTable CT= new CommandLineTable();
+        CT.setShowVerticalLines(true);
+        System.out.println("|------------------------------Home Page-----------------------------|");
+        System.out.println("|--------------------------------------------------------------------|");
+        CT.setHeaders("Product_ID","Product_Name","Product_price","Promotion_Price");
+        for (int i = 0; i < PR.size(); i++) {
+            CT.addRow(String.valueOf(PR.get(i).getProduct_id()),String.valueOf(PR.get(i).getProduct_name()),String.valueOf(PR.get(i).getProduct_price()),String.valueOf(PR.get(i).getPromotion_price()));
+        }
+        CT.print();
+    }
+
+
+    public static void ask()throws SQLException{
+        boolean kt = true;
+        while (kt) {
+            System.out.print("----Enter Movie Page[1->4]------Enter [0] To Continue:.... ");
+            String ask_customer= sc.nextLine();
+            switch (ask_customer) {
+                case "1":
+                    kt=false;
+                    break;
+                case "2":
+                    kt=false;
+                    break;
+                case "3":
+                    kt=false;
+
+                    break;
+                case "4":
+                     kt=false;
+                    break;
+                case "0":
+
+                    Order_DetailsBL.ask_the_customer();
+                    kt=false;
+                    break;
+
+                default:
+                    ClearTheScreen.clrscr();
+                    System.out.println("There is no function for this .Re-Enter:");
+                    kt=true;
+
+                    break;
+            }
+        }
+
     }
 }

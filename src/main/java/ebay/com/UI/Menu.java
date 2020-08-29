@@ -6,6 +6,7 @@ import java.util.Scanner;
 import ebay.com.bl.Address_DetailsBL;
 import ebay.com.bl.AdminBL;
 import ebay.com.bl.Brand_ProductBL;
+import ebay.com.bl.CartBL;
 import ebay.com.bl.Category_ProductBL;
 import ebay.com.bl.CustomerBL;
 import ebay.com.bl.OptionsBL;
@@ -46,7 +47,9 @@ public class Menu {
             choice = sc.nextLine();
             switch (choice) {
                 case "1":
-
+                    ClearTheScreen.clrscr();
+                    ProductBL.show_product_home();
+                    ProductBL.ask();
                     break;
                 case "2":
 
@@ -399,6 +402,9 @@ public class Menu {
 
                     break;
                 case "4":
+                    ClearTheScreen.clrscr();
+                    CartBL.show_cart();
+
 
                     break;
 

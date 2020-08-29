@@ -2,6 +2,7 @@ package ebay.com.persistance;
 
 public class Order {
    private int order_id;
+   private int customer_id;
    private int address_id;
    private int payment_id;
    private int shipment_id;
@@ -13,8 +14,9 @@ public class Order {
    public Order(){
 
    }
-   public Order(int order_id,int address_id,int payment_id,int shipment_id,String customer_notes,String order_status,String order_date){
+   public Order(int order_id,int customer_id,int address_id,int payment_id,int shipment_id,String customer_notes,String order_status,String order_date){
        this.order_id = order_id;
+       this.customer_id = customer_id;
        this.address_id = address_id;
        this.payment_id = payment_id;
        this.shipment_id = shipment_id;
@@ -28,6 +30,12 @@ public class Order {
    }
    public void setOrder_id(int order_id) {
        this.order_id = order_id;
+   }
+   public int getCustomer_id() {
+       return customer_id;
+   }
+   public void setCustomer_id(int customer_id) {
+       this.customer_id = customer_id;
    }
    public int getAddress_id() {
        return address_id;

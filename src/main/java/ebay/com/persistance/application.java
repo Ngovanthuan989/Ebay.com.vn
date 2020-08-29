@@ -12,4 +12,7 @@ public class application {
     public static int id_admin;
     public static String name_admin;
 
+
+    public static int order_id;
+
 }
