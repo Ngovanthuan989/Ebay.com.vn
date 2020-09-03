@@ -10,6 +10,7 @@ import ebay.com.bl.CartBL;
 import ebay.com.bl.Category_ProductBL;
 import ebay.com.bl.CustomerBL;
 import ebay.com.bl.OptionsBL;
+import ebay.com.bl.Order_DetailsBL;
 import ebay.com.bl.PaymentBL;
 import ebay.com.bl.ProductBL;
 import ebay.com.bl.Product_OptionsBL;
@@ -403,9 +404,7 @@ public class Menu {
                     break;
                 case "4":
                     ClearTheScreen.clrscr();
-                    CartBL.show_cart();
-
-
+                    Cart();
                     break;
 
                 case "0":
@@ -420,6 +419,50 @@ public class Menu {
                     System.out.println("There is no function for this .Re-Enter:");
                     break;
             }
+        }
+
+    }
+    public static void Cart()throws SQLException{
+        String choice;
+        while (true) {
+            System.out.println("==========================Cart=========================");
+            System.out.println("-------------------------------------------------------");
+            System.out.println("|1.Show Cart                                          |");
+            System.out.println("-------------------------------------------------------");
+            System.out.println("|2.Update Cart                                        |");
+            System.out.println("-------------------------------------------------------");
+            System.out.println("|3.Delete Cart                                        |");
+            System.out.println("-------------------------------------------------------");
+            System.out.println("|0.Return To The Previous Page                        |");
+            System.out.println("-------------------------------------------------------");
+            System.out.println("   ==>>Inviting You To Choose:            ");
+            choice =sc.nextLine();
+
+            switch (choice) {
+                case "1":
+                    ClearTheScreen.clrscr();
+                    CartBL.show_cart();
+                    break;
+                case "2":
+                    ClearTheScreen.clrscr();
+                    Order_DetailsBL.update_order_details();
+                    break;
+                case "3":
+                    ClearTheScreen.clrscr();
+                    Order_DetailsBL.remove_order_details();
+                    break;
+                case "0":
+                    ClearTheScreen.clrscr();
+                    ShowMenu();
+                    break;
+
+                default:
+                    ClearTheScreen.clrscr();
+                    System.out.println("There is no function for this .Re-Enter:");
+                    break;
+            }
+
+
         }
 
     }

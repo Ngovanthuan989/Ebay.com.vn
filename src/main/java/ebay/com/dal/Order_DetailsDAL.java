@@ -36,18 +36,19 @@ public class Order_DetailsDAL {
         }
 
     }
-    public void update_order_details(Order_Details odd,int order_id)throws SQLException{
+
+
+    public void update_order_details(Order_Details odd,int order_id,int product_id)throws SQLException{
         PreparedStatement preparedStatement =null;
         Connection connection=JDBCConnection.getJDBConnection();
 
         try {
-            String sql="update order_details set product_id=?,amount=? where order_id='"+order_id+"'";
+            String sql="update order_details set product_id=?,amount=? where order_id='"+order_id+"' and product_id='"+product_id+"'";
             preparedStatement=(PreparedStatement)connection.prepareStatement(sql);
             preparedStatement.setInt(1, odd.getProducts_id());
-            preparedStatement.setInt(2, odd.getOrder_id());
-            preparedStatement.setInt(3, odd.getAmount());
+            preparedStatement.setInt(2, odd.getAmount());
 
-            preparedStatement.execute();
+            preparedStatement.executeUpdate();
         } catch (SQLException ex) {
             //TODO: handle exception
             ex.printStackTrace();
@@ -60,6 +61,8 @@ public class Order_DetailsDAL {
         }
 
     }
+
+
     public ArrayList<Order_Details>select_order_details(int orders_id)throws SQLException{
         Connection connection =JDBCConnection.getJDBConnection();
         Statement statement =connection.createStatement();
@@ -89,5 +92,27 @@ public class Order_DetailsDAL {
             }
         }
         return null;
+    }
+
+    public void delete_order_details(Order_Details details,int order_id)throws SQLException{
+        PreparedStatement preparedStatement = null;
+        Connection connection=JDBCConnection.getJDBConnection();
+
+        try {
+            String sql = "Delete from order_details where order_ID='"+order_id+"' and product_ID=?;";
+            preparedStatement = (PreparedStatement) connection.prepareStatement(sql);
+            preparedStatement.setInt(1, details.getProducts_id());
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException ex) {
+            //TODO: handle exception
+            ex.printStackTrace();
+        }finally{
+            try {
+                preparedStatement.close();
+            } catch (SQLException ex) {
+                //TODO: handle exception
+            }
+        }
     }
 }

@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 import ebay.com.UI.Menu;
+import ebay.com.persistance.application;
 
 import static ebay.com.connection.JDBCConnection.getJDBConnection;
 
@@ -24,6 +25,7 @@ public final class App {
         Connection connection = getJDBConnection();
 
             if (connection != null) {
+                application.show();
                 Menu.ShowMenu();
             }
             else{

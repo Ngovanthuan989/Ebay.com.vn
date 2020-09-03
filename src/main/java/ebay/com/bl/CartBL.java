@@ -23,7 +23,7 @@ public class CartBL {
         for (int i = 0; i < CART.size(); i++) {
            CT.addRow(String.valueOf(CART.get(i).getOrder_id()),String.valueOf(CART.get(i).getProduct_id()),
            String.valueOf(CART.get(i).getProduct_code()),String.valueOf(CART.get(i).getProduct_name()),
-           String.valueOf(CART.get(i).getPromotion_price()),String.valueOf(CART.get(i).getUnit_price()),
+           String.valueOf(CART.get(i).getPromotion_price()),String.valueOf(CART.get(i).getAmount()),
            String.valueOf(CART.get(i).getUnit_price()));
         }
         CT.print();

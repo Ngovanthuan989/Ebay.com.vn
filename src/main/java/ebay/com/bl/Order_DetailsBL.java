@@ -43,7 +43,7 @@ public class Order_DetailsBL {
                     break;
                 case "n":
                      ClearTheScreen.clrscr();
-                     System.out.println("Thank you!");
+                     System.out.println("The Product You Purchased Above Has Been Added To Your Cart.Please go to cart to pay!...");
                      check = false;
                     break;
                 default:
@@ -60,7 +60,7 @@ public class Order_DetailsBL {
     public static void update_order_details()throws SQLException{
         Order_Details odd = new Order_Details();
         Order_DetailsDAL oda= new Order_DetailsDAL();
-        System.out.println("-----------------------------------------------------");
+        System.out.println("============================UPDATE CART============================");
         System.out.print(" 1.Update Product_ID:");
         int product_id =Integer.parseInt(sc.nextLine());
         odd.setProducts_id(product_id);
@@ -68,9 +68,14 @@ public class Order_DetailsBL {
         System.out.print(" 2.Update Amount:");
         int amount = Integer.parseInt(sc.nextLine());
         odd.setAmount(amount);
+        System.out.println("-----------------------------------------------------");
+        System.out.print("=>Enter Product_ID:");
+        int produc_id=Integer.parseInt(sc.nextLine());
+
+
 
         ODD.add(odd);
-        oda.update_order_details(odd, application.order_id);
+        oda.update_order_details(odd, application.order_id,produc_id);
     }
 
 
@@ -90,7 +95,7 @@ public class Order_DetailsBL {
                     break;
                 case "n":
                     ClearTheScreen.clrscr();
-                    System.out.println("The Product You Purchased Above Has Been Added To Your Cart.Please go to cart to pay!...");
+                    System.out.println("Thank you!");
                     check=true;
                     break;
 
@@ -101,6 +106,17 @@ public class Order_DetailsBL {
                     break;
             }
         }
+
+    }
+
+    public static void remove_order_details()throws SQLException{
+        Order_DetailsDAL odd = new Order_DetailsDAL();
+        Order_Details od = new Order_Details();
+        System.out.println("============================DELETE CART==========================");
+        System.out.println("=>Enter Product_ID:");
+        int product_id=Integer.parseInt(sc.nextLine());
+        od.setProducts_id(product_id);
+        odd.delete_order_details(od,application.order_id);
 
     }
 }
