@@ -52,11 +52,11 @@ public class OrderBL {
         int payment_id = Integer.parseInt(sc.nextLine());
         od.setPayment_id(payment_id);
         System.out.println("----------------------------------------------------");
-        System.out.print(   "3.Enter Shipment_ID:");
+        System.out.print("   3.Enter Shipment_ID:");
         int shipment_id =Integer.parseInt(sc.nextLine());
         od.setShipment_id(shipment_id);
         System.out.println("----------------------------------------------------");
-        System.out.print("  4.Enter Customer_Notes:");
+        System.out.print("   4.Enter Customer_Notes:");
         String customer_notes=sc.nextLine();
         od.setCustomer_notes(customer_notes);
         od.setOrder_status("Đang chờ xử lí");
@@ -68,7 +68,7 @@ public class OrderBL {
         int day = c.get(Calendar.DAY_OF_MONTH);
         od.setOrder_date(""+year+"-"+(month+1)+"-"+day);
         OD.add(od);
-        odd.update_order(od, application.order_id);
+        odd.update_order(od, application.order_id,application.id_customer);
 
     }
 }

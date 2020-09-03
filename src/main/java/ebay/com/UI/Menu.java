@@ -10,6 +10,7 @@ import ebay.com.bl.CartBL;
 import ebay.com.bl.Category_ProductBL;
 import ebay.com.bl.CustomerBL;
 import ebay.com.bl.OptionsBL;
+import ebay.com.bl.OrderBL;
 import ebay.com.bl.Order_DetailsBL;
 import ebay.com.bl.PaymentBL;
 import ebay.com.bl.ProductBL;
@@ -382,7 +383,9 @@ public class Menu {
             System.out.println("-----------------------------------------------------------");
             System.out.println("|3.Address_Shipping Management                            |");
             System.out.println("-----------------------------------------------------------");
-            System.out.println("|4.Giỏ Hàng                                               |");
+            System.out.println("|4.Cart                                                   |");
+            System.out.println("-----------------------------------------------------------");
+            System.out.println("|5.Pay                                                    |");
             System.out.println("-----------------------------------------------------------");
             System.out.println("|0.Return To The Previous Page                            |");
             System.out.println("-----------------------------------------------------------");
@@ -406,12 +409,14 @@ public class Menu {
                     ClearTheScreen.clrscr();
                     Cart();
                     break;
+                case "5":
+                    ClearTheScreen.clrscr();
+                    Pay();
+                    break;
 
                 case "0":
-
                     ClearTheScreen.clrscr();
                     ShowMenu();
-
                     break;
 
                 default:
@@ -421,6 +426,46 @@ public class Menu {
             }
         }
 
+    }
+    public static void Pay()throws SQLException{
+        String choice;
+        while (true) {
+            System.out.println("===========================Pay=========================");
+            System.out.println("-------------------------------------------------------");
+            System.out.println("|1.Pay                                                |");
+            System.out.println("-------------------------------------------------------");
+            System.out.println("|2.Payment Method                                     |");
+            System.out.println("-------------------------------------------------------");
+            System.out.println("|3.Delivery Service                                   |");
+            System.out.println("-------------------------------------------------------");
+            System.out.println("|0.Return To The Previous Page                        |");
+            System.out.println("-------------------------------------------------------");
+            System.out.println("   ==>>Inviting You To Choose:            ");
+            choice =sc.nextLine();
+            switch (choice) {
+                case "1":
+                    ClearTheScreen.clrscr();
+                    OrderBL.update_order();
+                    break;
+                case "2":
+                    ClearTheScreen.clrscr();
+                    PaymentBL.show_payment();
+                    break;
+                case "3":
+                     ClearTheScreen.clrscr();
+                     ShippingmentBL.show_shippinment();
+                    break;
+                case "0":
+                    ClearTheScreen.clrscr();
+                    Customer();
+                    break;
+                default:
+                    ClearTheScreen.clrscr();
+                    System.out.println("There is no function for this .Re-Enter:");
+                    break;
+            }
+
+        }
     }
     public static void Cart()throws SQLException{
         String choice;
@@ -562,7 +607,7 @@ public class Menu {
     public static void Brand_Management() throws SQLException{
         String choice;
         while (true) {
-            System.out.println(" ====================Brand_Management===================");
+            System.out.println("======================Brand_Management====================");
             System.out.println("----------------------------------------------------------");
             System.out.println("|1.Add New Brand_Product                                 |");
             System.out.println("----------------------------------------------------------");

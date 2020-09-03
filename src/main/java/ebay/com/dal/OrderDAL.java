@@ -43,21 +43,20 @@ public class OrderDAL {
 
     }
 
-    public void update_order(Order ord,int order_id)throws SQLException{
+    public void update_order(Order ord,int order_id,int customer_id)throws SQLException{
 
         PreparedStatement preparedStatement = null;
         Connection connection =JDBCConnection.getJDBConnection();
 
         try {
-            String sql="update orders set address_id,customer_id,payment_id,shipment_id,customer_notes,order_status,order_date where order_id='"+order_id+"' ";
+            String sql="update orders set address_id=?,payment_id=?,shipment_id=?,customer_notes=?,order_status=?,order_date=? where order_id='"+order_id+"' and customer_id='"+customer_id+"' ";
             preparedStatement=(PreparedStatement)connection.prepareStatement(sql);
             preparedStatement.setInt(1, ord.getAddress_id());
-            preparedStatement.setInt(2, ord.getCustomer_id());
-            preparedStatement.setInt(3, ord.getPayment_id());
-            preparedStatement.setInt(4, ord.getShipment_id());
-            preparedStatement.setString(5, ord.getCustomer_notes());
-            preparedStatement.setString(6, ord.getOrder_status());
-            preparedStatement.setString(7, ord.getOrder_date());
+            preparedStatement.setInt(2, ord.getPayment_id());
+            preparedStatement.setInt(3, ord.getShipment_id());
+            preparedStatement.setString(4, ord.getCustomer_notes());
+            preparedStatement.setString(5, ord.getOrder_status());
+            preparedStatement.setString(6, ord.getOrder_date());
 
             preparedStatement.executeUpdate();
 

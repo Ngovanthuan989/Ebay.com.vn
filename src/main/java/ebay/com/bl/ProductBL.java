@@ -138,7 +138,7 @@ public class ProductBL {
         System.out.println("|--------------------------------------------------------------------|");
         CT.setHeaders("Product_ID","Product_Name","Product_price","Promotion_Price");
         for (int i = 0; i < PR.size(); i++) {
-            CT.addRow(String.valueOf(PR.get(i).getProduct_id()),String.valueOf(PR.get(i).getProduct_name()),String.valueOf(PR.get(i).getProduct_price()),String.valueOf(PR.get(i).getPromotion_price()));
+            CT.addRow(String.valueOf(PR.get(i).getProduct_id()),String.valueOf(PR.get(i).getProduct_name()),String.valueOf(PR.get(i).getProduct_price()+" "+"VND"),String.valueOf(PR.get(i).getPromotion_price()+" "+"VND"));
         }
         CT.print();
     }
