@@ -59,7 +59,7 @@ public class OrderBL {
         System.out.print("   4.Enter Customer_Notes:");
         String customer_notes=sc.nextLine();
         od.setCustomer_notes(customer_notes);
-        od.setOrder_status("Đang chờ xử lí");
+        od.setOrder_status("Dang Cho Xu Li");
 
         Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);

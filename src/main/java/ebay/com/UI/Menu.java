@@ -5,6 +5,8 @@ import java.util.Scanner;
 
 import ebay.com.bl.Address_DetailsBL;
 import ebay.com.bl.AdminBL;
+import ebay.com.bl.Bi_TTBL;
+import ebay.com.bl.BillBl;
 import ebay.com.bl.Brand_ProductBL;
 import ebay.com.bl.CartBL;
 import ebay.com.bl.Category_ProductBL;
@@ -446,6 +448,9 @@ public class Menu {
                 case "1":
                     ClearTheScreen.clrscr();
                     OrderBL.update_order();
+                    ClearTheScreen.clrscr();
+                    BillBl.show_bill();
+                    Bi_TTBL.show_bil_tt();
                     break;
                 case "2":
                     ClearTheScreen.clrscr();
@@ -498,7 +503,7 @@ public class Menu {
                     break;
                 case "0":
                     ClearTheScreen.clrscr();
-                    ShowMenu();
+                    Customer();
                     break;
 
                 default:
