@@ -72,6 +72,46 @@ public class OrderDAL {
         }
 
     }
+    public void update_order_status(Order ord,int order_id,int customer_id)throws SQLException{
+        PreparedStatement preparedStatement =null;
+        Connection connection = JDBCConnection.getJDBConnection();
+
+        try {
+            String sql="update orders set order_status=? where order_id='"+order_id+"'and customer_id='"+customer_id+"'";
+            preparedStatement=(PreparedStatement)connection.prepareStatement(sql);
+            preparedStatement.setString(1, ord.getOrder_status());
+            preparedStatement.executeUpdate();
+        } catch (SQLException ex) {
+            //TODO: handle exception
+            ex.printStackTrace();
+        }finally{
+            try {
+                preparedStatement.close();
+            } catch (SQLException e) {
+                //TODO: handle exception
+            }
+        }
+    }
+    public void delete_order(Order ord,int customer_id)throws SQLException{
+        PreparedStatement preparedStatement =null;
+        Connection connection = JDBCConnection.getJDBConnection();
+
+        try {
+            String sql="delete from orders where order_id=? and customer_id='"+customer_id+"'";
+            preparedStatement=(PreparedStatement)connection.prepareStatement(sql);
+            preparedStatement.setInt(1, ord.getOrder_id());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            //TODO: handle exception
+            e.printStackTrace();
+        }finally{
+            try {
+                preparedStatement.close();
+            } catch (SQLException e) {
+                //TODO: handle exception
+            }
+        }
+    }
 
     public ArrayList<Order>select_order(int customers_id)throws SQLException{
 

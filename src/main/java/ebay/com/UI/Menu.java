@@ -451,6 +451,7 @@ public class Menu {
                     ClearTheScreen.clrscr();
                     BillBl.show_bill();
                     Bi_TTBL.show_bil_tt();
+                    OrderBL.ask_customer();
                     break;
                 case "2":
                     ClearTheScreen.clrscr();

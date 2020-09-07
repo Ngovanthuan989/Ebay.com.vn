@@ -6,6 +6,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Scanner;
 
+import ebay.com.UI.ClearTheScreen;
 import ebay.com.dal.OrderDAL;
 import ebay.com.persistance.Order;
 import ebay.com.persistance.application;
@@ -69,6 +70,61 @@ public class OrderBL {
         od.setOrder_date(""+year+"-"+(month+1)+"-"+day);
         OD.add(od);
         odd.update_order(od, application.order_id,application.id_customer);
+
+    }
+
+    public static void update_order_status()throws SQLException{
+        Order od = new Order();
+        OrderDAL odd = new OrderDAL();
+        od.setOrder_status("Đang chờ lấy hàng");
+        OD.add(od);
+        odd.update_order_status(od, application.order_id, application.id_customer);
+        System.out.println("  /-------------------------------------------/");
+        System.out.println(" /        Thank you for your purchase!       /");
+        System.out.println("/-------------------------------------------/");
+
+    }
+
+
+    public static void remove_order() throws SQLException{
+       Order od = new Order();
+       OrderDAL odd = new OrderDAL();
+       od.setOrder_id(application.order_id);
+       OD.add(od);
+       odd.delete_order(od, application.id_customer);
+       System.out.println("  /-------------------------------------------/");
+       System.out.println(" /        Your order has been canceled!      /");
+       System.out.println("/-------------------------------------------/");
+    }
+
+
+
+    public static void ask_customer()throws SQLException{
+        Boolean check = true;
+        while (check) {
+            System.out.println("  /----------------------------------------/");
+            System.out.println(" / Are you sure you want to buy not(y/n)? /");
+            System.out.println("/----------------------------------------/");
+            String yn =sc.nextLine();
+            switch (yn) {
+                case "y":
+                    ClearTheScreen.clrscr();
+                    update_order_status();
+                    check=false;
+                    break;
+                case "n":
+                    ClearTheScreen.clrscr();
+                    remove_order();
+                    check=false;
+                    break;
+                default:
+                    ClearTheScreen.clrscr();
+                    System.out.println("There is no function for this .Re-Enter:");
+                    check=true;
+                    break;
+            }
+        }
+
 
     }
 }

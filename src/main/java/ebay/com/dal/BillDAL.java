@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 import ebay.com.connection.JDBCConnection;
 import ebay.com.persistance.Bill;
-import ebay.com.persistance.Bill_TT;
 
 public class BillDAL {
 

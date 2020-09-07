@@ -15,12 +15,12 @@ public class BillBl {
         BII= new BillDAL().select_bill(application.order_id, application.id_customer);
         CommandLineTable CT = new CommandLineTable();
         CT.setShowVerticalLines(true);
-        CT.setHeaders("Order_ID","Customer_Name","Customer_Phone","Product_ID","Product_Name","Promotion_Price","SL","Payment_Method","Address_Name","Order_Date","Shipping_Name","Shipping_Price","Total","Order_Status");
+        CT.setHeaders("Order_ID","Customer_Name","Customer_Phone","Product_ID","Product_Name","Promotion_Price","SL","Payment_Method","Address_Name","Order_Date","Shipping_Name","Shipping_Price","Total");
         for (int i = 0; i < BII.size(); i++) {
-            CT.addRow(String.valueOf(BII.get(i).getOrder_id()),String.valueOf(BII.get(i).getCustomer_id()),String.valueOf(BII.get(i).getCustomer_name()),
+            CT.addRow(String.valueOf(BII.get(i).getOrder_id()),String.valueOf(BII.get(i).getCustomer_name()),
             String.valueOf(BII.get(i).getCustomer_phone()),String.valueOf(BII.get(i).getProduct_id()),String.valueOf(BII.get(i).getProduct_name()),
             String.valueOf(BII.get(i).getPromotion_price()),String.valueOf(BII.get(i).getAmount()),String.valueOf(BII.get(i).getPayment_method()),String.valueOf(BII.get(i).getAddress_name()),String.valueOf(BII.get(i).getOrder_date()),
-            String.valueOf(BII.get(i).getShipping_name()),String.valueOf(BII.get(i).getShipping_price()),String.valueOf(BII.get(i).getTotal()),String.valueOf(BII.get(i).getOrder_status()));
+            String.valueOf(BII.get(i).getShipping_name()),String.valueOf(BII.get(i).getShipping_price()),String.valueOf(BII.get(i).getTotal()));
         }
         CT.print();
 
