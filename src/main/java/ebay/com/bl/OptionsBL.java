@@ -9,6 +9,7 @@ import java.util.Scanner;
 import ebay.com.UI.CommandLineTable;
 import ebay.com.dal.OptionsDAL;
 import ebay.com.persistance.Options;
+import ebay.com.validate.Validate;
 
 public class OptionsBL {
 
@@ -21,7 +22,7 @@ public class OptionsBL {
         Options op = new Options();
         OptionsDAL opd = new OptionsDAL();
         System.out.println("Enter Option_Name:");
-        String option_name = sc.nextLine();
+        String option_name = new Validate().checkEmpty();
         op.setTbl_options_name(option_name);
 
         Calendar c = Calendar.getInstance();

@@ -9,6 +9,7 @@ import java.util.Scanner;
 import ebay.com.UI.CommandLineTable;
 import ebay.com.dal.Category_ProductDAL;
 import ebay.com.persistance.Category_Product;
+import ebay.com.validate.Validate;
 
 public class Category_ProductBL{
     static List<Category_Product> CAP = new ArrayList<>();
@@ -21,7 +22,7 @@ public class Category_ProductBL{
 
         Category_ProductDAL cad = new Category_ProductDAL();
         System.out.println("Enter Category_Name:");
-        String category_name = sc.nextLine();
+        String category_name = new Validate().checkEmpty();
         cp.setCategory_Name(category_name);
         Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);
@@ -58,11 +59,11 @@ public class Category_ProductBL{
         Category_ProductDAL cad = new Category_ProductDAL();
 
         System.out.println("Enter Category_Id:");
-        int id = Integer.parseInt(sc.nextLine());
+        int id = Integer.parseInt(new Validate().checkINT());
 
         cp.setCategory_id(id);
         System.out.println("Update Category_Name:");
-        String category_name = sc.nextLine();
+        String category_name = new Validate().checkEmpty();
         cp.setCategory_Name(category_name);
 
         Calendar c = Calendar.getInstance();

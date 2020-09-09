@@ -9,6 +9,7 @@ import java.util.Scanner;
 import ebay.com.UI.CommandLineTable;
 import ebay.com.dal.Brand_ProductDAL;
 import ebay.com.persistance.Brand_Product;
+import ebay.com.validate.Validate;
 
 public class Brand_ProductBL {
 
@@ -22,10 +23,10 @@ public class Brand_ProductBL {
         Brand_ProductDAL brd = new Brand_ProductDAL();
 
         System.out.println("Enter Category_ID:");
-        int category_id = Integer.parseInt(sc.nextLine());
+        int category_id = Integer.parseInt(new Validate().checkINT());
         bp.setCategory_id(category_id);
         System.out.println("Enter Brand_Name:");
-        String brand_name = sc.nextLine();
+        String brand_name = new Validate().checkEmpty();
         bp.setBrand_name(brand_name);
 
         Calendar c = Calendar.getInstance();
@@ -47,13 +48,13 @@ public class Brand_ProductBL {
         Brand_ProductDAL brd = new Brand_ProductDAL();
 
         System.out.println("Enter Brand_ID:");
-        int brand_id = Integer.parseInt(sc.nextLine());
+        int brand_id = Integer.parseInt(new Validate().checkINT());
         bp.setBrand_id(brand_id);
         System.out.println("Update Category_Id:");
-        int category_id = Integer.parseInt(sc.nextLine());
+        int category_id = Integer.parseInt(new Validate().checkINT());
         bp.setCategory_id(category_id);
         System.out.println("Update Brand_Name:");
-        String brand_name =  sc.nextLine();
+        String brand_name =  new Validate().checkEmpty();
         bp.setBrand_name(brand_name);
 
         Calendar c = Calendar.getInstance();

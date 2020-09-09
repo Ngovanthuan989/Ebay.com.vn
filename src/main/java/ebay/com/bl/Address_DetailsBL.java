@@ -9,6 +9,7 @@ import ebay.com.UI.CommandLineTable;
 import ebay.com.dal.Address_DetailsDAL;
 import ebay.com.persistance.Address_Details;
 import ebay.com.persistance.application;
+import ebay.com.validate.Validate;
 
 public class Address_DetailsBL {
 
@@ -22,7 +23,7 @@ public class Address_DetailsBL {
 
         ad.setCustomer_id(application.id_customer);
         System.out.println("Enter Address_name");
-        String address_name = sc.nextLine();
+        String address_name = new Validate().checkEmpty();
         ad.setAddress_name(address_name);
 
         ADT.add(ad);
@@ -35,11 +36,11 @@ public class Address_DetailsBL {
         Address_DetailsDAL adt = new Address_DetailsDAL();
 
         System.out.println("Enter Address_id:");
-        int address_id = Integer.parseInt(sc.nextLine());
+        int address_id = Integer.parseInt(new Validate().checkINT());
         ad.setAddress_id(address_id);
         ad.setCustomer_id(application.id_customer);
         System.out.println("Enter Address_Name:");
-        String address_name = sc.nextLine();
+        String address_name = new Validate().checkEmpty();
         ad.setAddress_name(address_name);
 
 

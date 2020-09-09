@@ -10,6 +10,7 @@ import ebay.com.UI.ClearTheScreen;
 import ebay.com.dal.OrderDAL;
 import ebay.com.persistance.Order;
 import ebay.com.persistance.application;
+import ebay.com.validate.Validate;
 
 public class OrderBL {
 
@@ -46,19 +47,19 @@ public class OrderBL {
         OrderDAL odd = new OrderDAL();
         System.out.println("-------------------------------Check Out--------------------------");
         System.out.print("   1.Enter Address_ID:");
-        int address_id = Integer.parseInt(sc.nextLine());
+        int address_id = Integer.parseInt(new Validate().checkINT());
         od.setAddress_id(address_id);
         System.out.println("----------------------------------------------------");
         System.out.print("   2.Enter Payment_ID:");
-        int payment_id = Integer.parseInt(sc.nextLine());
+        int payment_id = Integer.parseInt(new Validate().checkINT());
         od.setPayment_id(payment_id);
         System.out.println("----------------------------------------------------");
         System.out.print("   3.Enter Shipment_ID:");
-        int shipment_id =Integer.parseInt(sc.nextLine());
+        int shipment_id =Integer.parseInt(new Validate().checkINT());
         od.setShipment_id(shipment_id);
         System.out.println("----------------------------------------------------");
         System.out.print("   4.Enter Customer_Notes:");
-        String customer_notes=sc.nextLine();
+        String customer_notes=new Validate().checkEmpty();
         od.setCustomer_notes(customer_notes);
         od.setOrder_status("Dang Cho Xu Li");
 

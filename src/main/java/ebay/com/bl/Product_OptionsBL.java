@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 import ebay.com.dal.Product_OptionsDAL;
 import ebay.com.persistance.Product_Options;
+import ebay.com.validate.Validate;
 
 public class Product_OptionsBL {
     static List<Product_Options> PO = new ArrayList<>();
@@ -17,13 +18,13 @@ public class Product_OptionsBL {
         Product_OptionsDAL pod = new Product_OptionsDAL();
 
         System.out.println("Enter Product_ID");
-        int product_id = Integer.parseInt(sc.nextLine());
+        int product_id = Integer.parseInt(new Validate().checkINT());
         po.setProduct_id(product_id);
         System.out.println("Enter tbl_option_id");
-        int tbl_options_id = Integer.parseInt(sc.nextLine());
+        int tbl_options_id = Integer.parseInt(new Validate().checkINT());
         po.setTbl_options_id(tbl_options_id);
         System.out.println("Enter Options_Name:");
-        String options_name = sc.nextLine();
+        String options_name = new Validate().checkEmpty();
         po.setOptions_name(options_name);
 
         PO.add(po);
@@ -37,7 +38,7 @@ public class Product_OptionsBL {
         Product_OptionsDAL pod = new Product_OptionsDAL();
 
         System.out.println("Enter Product_Options_ID:");
-        int product_options_id = Integer.parseInt(sc.nextLine());
+        int product_options_id = Integer.parseInt(new Validate().checkINT());
         po.setOptions_id(product_options_id);
         System.out.println("Update Product_ID:");
         int product_id = Integer.parseInt(sc.nextLine());

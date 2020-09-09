@@ -6,9 +6,11 @@ import java.util.List;
 import java.util.Scanner;
 
 import ebay.com.UI.ClearTheScreen;
+import ebay.com.UI.Menu;
 import ebay.com.dal.Order_DetailsDAL;
 import ebay.com.persistance.Order_Details;
 import ebay.com.persistance.application;
+import ebay.com.validate.Validate;
 
 public class Order_DetailsBL {
 
@@ -23,12 +25,12 @@ public class Order_DetailsBL {
         while (check) {
             System.out.println("-----------------------------------------------------");
             System.out.print("  1.Enter Product_ID:");
-            int product_id =Integer.parseInt(sc.nextLine());
-            odd.setProducts_id(product_id);
+            int product_id =Integer.parseInt(new Validate().checkINT());
+       odd.setProducts_id(product_id);
             odd.setOrder_id(application.order_id);
             System.out.println("-----------------------------------------------------");
             System.out.print("  2.Enter Amount:");
-            int amount = Integer.parseInt(sc.nextLine());
+            int amount = Integer.parseInt(new Validate().checkINT());
             odd.setAmount(amount);
 
             ODD.add(odd);
@@ -62,15 +64,15 @@ public class Order_DetailsBL {
         Order_DetailsDAL oda= new Order_DetailsDAL();
         System.out.println("============================UPDATE CART============================");
         System.out.print(" 1.Update Product_ID:");
-        int product_id =Integer.parseInt(sc.nextLine());
+        int product_id =Integer.parseInt(new Validate().checkINT());
         odd.setProducts_id(product_id);
         System.out.println("-----------------------------------------------------");
         System.out.print(" 2.Update Amount:");
-        int amount = Integer.parseInt(sc.nextLine());
+        int amount = Integer.parseInt(new Validate().checkINT());
         odd.setAmount(amount);
         System.out.println("-----------------------------------------------------");
         System.out.print("=>Enter Product_ID:");
-        int produc_id=Integer.parseInt(sc.nextLine());
+        int produc_id=Integer.parseInt(new Validate().checkINT());
 
 
 
@@ -96,6 +98,7 @@ public class Order_DetailsBL {
                 case "n":
                     ClearTheScreen.clrscr();
                     System.out.println("Thank you!");
+                    Menu.ShowMenu();
                     check=true;
                     break;
 
@@ -114,7 +117,7 @@ public class Order_DetailsBL {
         Order_Details od = new Order_Details();
         System.out.println("============================DELETE CART==========================");
         System.out.println("=>Enter Product_ID:");
-        int product_id=Integer.parseInt(sc.nextLine());
+        int product_id=Integer.parseInt(new Validate().checkINT());
         od.setProducts_id(product_id);
         odd.delete_order_details(od,application.order_id);
 

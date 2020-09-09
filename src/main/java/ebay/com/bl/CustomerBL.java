@@ -12,6 +12,7 @@ import ebay.com.encrypt.EncodeAndDecode;
 import ebay.com.encrypt.PasswordField;
 import ebay.com.persistance.Customer;
 import ebay.com.persistance.application;
+import ebay.com.validate.Validate;
 public class CustomerBL {
 
     static List<Customer> CM = new ArrayList<>();
@@ -24,15 +25,15 @@ public class CustomerBL {
         CustomerDAL CUD = new CustomerDAL();
         System.out.println("-----------------------------RegisterCustomer--------------------------");
         System.out.print("  1.Enter Customer_Name:");
-        String name = sc.nextLine();
+        String name = new Validate().checkString();
         cm.setCustomer_name(name);
         System.out.println("--------------------------------------------------------");
         System.out.print("  2.Enter Customer_Address:");
-        String address = sc.nextLine();
+        String address = new Validate().checkEmpty();
         cm.setCustomer_address(address);
         System.out.println("--------------------------------------------------------");
         System.out.print("  3.Enter Customer_Email:");
-        String email = sc.nextLine();
+        String email = new Validate().checkEMail();
         cm.setCustomer_email(email);
         System.out.println("--------------------------------------------------------");
         String password = PasswordField.readPassword("4.Enter Customer_password: ");
@@ -41,7 +42,7 @@ public class CustomerBL {
         cm.setCustomer_pass(encode);
         System.out.println("--------------------------------------------------------");
         System.out.print("  5.Enter Phone_Number:");
-        String phone = sc.nextLine();
+        String phone = new Validate().check_SĐT();
         cm.setCustomer_phone(phone);
         CM.add(cm);
 
