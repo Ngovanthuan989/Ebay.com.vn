@@ -7,11 +7,13 @@ import java.util.Scanner;
 
 import ebay.com.UI.ClearTheScreen;
 import ebay.com.UI.CommandLineTable;
+import ebay.com.UI.Menu;
 import ebay.com.dal.SuppilerDAL;
 import ebay.com.encrypt.EncodeAndDecode;
 import ebay.com.encrypt.PasswordField;
 import ebay.com.persistance.Suppiler;
 import ebay.com.persistance.application;
+import ebay.com.validate.Validate;
 
 public class SuppilerBL {
     static List<Suppiler> SP = new ArrayList<>();
@@ -75,7 +77,7 @@ public class SuppilerBL {
 
                  int kt = 0;
             for (int i = 0; i < SP.size(); i++) {
-                if (SP.get(i).getSuppiler_email().equals(email) && SP.get(i).getSuppiler_pass().equals(decode)) {
+                if (SP.get(i).getSuppiler_email().equals(email) && SP.get(i).getSuppiler_pass().equals(decode) && SP.get(i).getSuppiler_status().equals("Activity")) {
                     kt = 1;
                     application.id_supplier=SP.get(i).getSuppiler_id();
                     application.name_supplier=SP.get(i).getSuppiler_name();
@@ -86,7 +88,7 @@ public class SuppilerBL {
                 check = false;
 
             } else {
-                System.out.println("Email or Password is wrong!");
+                System.out.println("Email or Password is wrong!--(If new register account, please wait for approval)--");
                 check = true;
 
             }
@@ -133,5 +135,113 @@ public class SuppilerBL {
            String.valueOf(SP.get(i).getSuppiler_phone()),String.valueOf(SP.get(i).getSuppiler_status()));
         }
         CT.print();
+    }
+
+    public static void show_supplier_status()throws SQLException{
+        SP = new SuppilerDAL().SelectSuppilerStatus();
+        CommandLineTable CT = new CommandLineTable();
+        CT.setShowVerticalLines(true);
+        CT.setHeaders("Supplier_ID","Supplier_Name","Supplier_Address","Supplier_Email","Supplier_Phone","Supplier_Status");
+        for (int i = 0; i < SP.size(); i++) {
+           CT.addRow(String.valueOf(SP.get(i).getSuppiler_id()),String.valueOf(SP.get(i).getSuppiler_name()),
+           String.valueOf(SP.get(i).getSuppiler_address()),String.valueOf(SP.get(i).getSuppiler_email()),
+           String.valueOf(SP.get(i).getSuppiler_phone()),String.valueOf(SP.get(i).getSuppiler_status()));
+        }
+        CT.print();
+    }
+    public static void show_supplier_view()throws SQLException{
+        SP = new SuppilerDAL().SelectSuppilerView();
+        CommandLineTable CT = new CommandLineTable();
+        CT.setShowVerticalLines(true);
+        CT.setHeaders("Supplier_ID","Supplier_Name","Supplier_Address","Supplier_Email","Supplier_Phone","Supplier_Status");
+        for (int i = 0; i < SP.size(); i++) {
+           CT.addRow(String.valueOf(SP.get(i).getSuppiler_id()),String.valueOf(SP.get(i).getSuppiler_name()),
+           String.valueOf(SP.get(i).getSuppiler_address()),String.valueOf(SP.get(i).getSuppiler_email()),
+           String.valueOf(SP.get(i).getSuppiler_phone()),String.valueOf(SP.get(i).getSuppiler_status()));
+        }
+        CT.print();
+    }
+
+
+    public static void update_status()throws SQLException{
+        Suppiler sp = new Suppiler();
+        SuppilerDAL SPD = new SuppilerDAL();
+        System.out.println("Enter ID:");
+        int suppiler_id =Integer.parseInt(new Validate().checkINT());
+        sp.setSuppiler_id(suppiler_id);
+        sp.setSuppiler_status("Activity");
+
+        SP.add(sp);
+        SPD.update_suppiler_status(sp, suppiler_id);
+
+
+
+    }
+    public static void update_status2()throws SQLException{
+        Suppiler sp = new Suppiler();
+        SuppilerDAL SPD = new SuppilerDAL();
+        System.out.println("Enter ID:");
+        int suppiler_id =Integer.parseInt(new Validate().checkINT());
+        sp.setSuppiler_id(suppiler_id);
+        sp.setSuppiler_status("Lock up");
+
+        SP.add(sp);
+        SPD.update_suppiler_status(sp, suppiler_id);
+
+
+
+    }
+
+    public static void authentic_seller()throws SQLException{
+        Boolean check = true;
+        while (check) {
+            System.out.println("  /-----------------------------------/");
+            System.out.println(" /    Verify seller account(y/n)?    /");
+            System.out.println("/-----------------------------------/");
+            String yn =sc.nextLine();
+            switch (yn) {
+                case "y":
+                    ClearTheScreen.clrscr();
+                    update_status();
+                    check=false;
+                    break;
+                case "n":
+                    ClearTheScreen.clrscr();
+                    Menu.Seller_Management();
+                    check=false;
+                    break;
+                default:
+                    ClearTheScreen.clrscr();
+                    System.out.println("There is no function for this .Re-Enter:");
+                    check=true;
+                    break;
+            }
+        }
+    }
+    public static void Lock_seller()throws SQLException{
+        Boolean check = true;
+        while (check) {
+            System.out.println("  /-----------------------------------/");
+            System.out.println(" /       Account Lockout(y/n)?       /");
+            System.out.println("/-----------------------------------/");
+            String yn =sc.nextLine();
+            switch (yn) {
+                case "y":
+                    ClearTheScreen.clrscr();
+                    update_status2();
+                    check=false;
+                    break;
+                case "n":
+                    ClearTheScreen.clrscr();
+                    Menu.Seller_Management();
+                    check=false;
+                    break;
+                default:
+                    ClearTheScreen.clrscr();
+                    System.out.println("There is no function for this .Re-Enter:");
+                    check=true;
+                    break;
+            }
+        }
     }
 }

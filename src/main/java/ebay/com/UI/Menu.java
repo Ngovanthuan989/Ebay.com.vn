@@ -16,6 +16,7 @@ import ebay.com.bl.OrderBL;
 import ebay.com.bl.Order_DetailsBL;
 import ebay.com.bl.PaymentBL;
 import ebay.com.bl.ProductBL;
+import ebay.com.bl.Product_DetailsBL;
 import ebay.com.bl.Product_OptionsBL;
 import ebay.com.bl.Product_Options_DetailsBL;
 import ebay.com.bl.ShippingmentBL;
@@ -29,23 +30,27 @@ public class Menu {
         String choice;
 
         while (true) {
-            System.out.println("    ~~~~~~~~~~~~~~~~~~~~~~~~~~Welcome to our EBAY~~~~~~~~~~~~~~~~~~~~~~~~~");
-            System.out.println("═════════════════════════════════════════════════════════════════════════════");
-            System.out.println("|1.Home Page                                                                |");
-            System.out.println("|---------------------------------------------------------------------------|");
-            System.out.println("|2.Product Details                                                          |");
-            System.out.println("|---------------------------------------------------------------------------|");
-            System.out.println("|3.Search                                                                   |");
-            System.out.println("|---------------------------------------------------------------------------|");
-            System.out.println("|4.Customer                                                                 |");
-            System.out.println("|---------------------------------------------------------------------------|");
-            System.out.println("|5.Suppiler channel                                                         |");
-            System.out.println("|---------------------------------------------------------------------------|");
-            System.out.println("|6.Dasboard(Admin)                                                          |");
-            System.out.println("|---------------------------------------------------------------------------|");
-            System.out.println("|0.Exit The Program                                                         |");
-            System.out.println("|---------------------------------------------------------------------------|");
-            System.out.println("═════════════════════════════════════════════════════════════════════════════");
+        System.out.println("           *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Ebay.com.vn~~~~~~~~~~~~~~~~~~~~~~~~~~~*    ");
+        System.out.println("          *                                                                      *   ");
+        System.err.println("         *   PROJECT 1       *            Thuận & Thắng        *          GROUP3   *|");
+        System.out.println("        | *                                                                       * |");
+        System.out.println("        |  *                                                                     *  |");
+        System.out.println("        |   *                                                                   *   |");
+        System.out.println("        |═══════════════════════════════════════════════════════════════════════════|");
+        System.out.println("        |1.Home Page                                           2.Product Details    |");
+        System.out.println("        |---------------------------------------------------------------------------|");
+        System.out.println("        |3.Search                                              4.Customer           |");
+        System.out.println("        |---------------------------------------------------------------------------|");
+        System.out.println("        |5.Suppiler channel                                    6.Dasboard(Admin)    |");
+        System.out.println("        |---------------------------------------------------------------------------|");
+        System.out.println("        |                           0.Exit The Program                              |");
+        System.out.println("        |---------------------------------------------------------------------------|");
+        System.out.println("        |                                                                           |");
+        System.out.println("       /                                                                           /");
+        System.out.println("      /    Developer: Ngô Văn Thuận        ***         Design: Phan Văn Thắng     /");
+        System.out.println("     /                                                                           /");
+            System.out.println("    /                                                                           /");
+            System.out.println("    ═══════════════════════════════════════════════════════════════════════════");
             System.out.println("   ==>>Inviting You To Choose:            ");
 
             choice = sc.nextLine();
@@ -56,8 +61,9 @@ public class Menu {
                     ProductBL.ask();
                     break;
                 case "2":
-
-
+                    ClearTheScreen.clrscr();
+                    Product_DetailsBL.show_product_details();
+                    ProductBL.ask();
                     break;
                 case "3":
 
@@ -103,17 +109,15 @@ public class Menu {
         String choice;
         while (true) {
             System.out.println("=======================Admin Dashboard=====================");
-            System.out.println("| [Hello: "+application.name_admin+"]                                 |");
+            System.out.println("| [Hello: "+application.name_admin+"]                     |");
             System.out.println("-----------------------------------------------------------");
             System.out.println("|1.Seller Management                                      |");
             System.out.println("-----------------------------------------------------------");
             System.out.println("|2.Customer Management                                    |");
             System.out.println("-----------------------------------------------------------");
-            System.out.println("|3.Product Management                                     |");
+            System.out.println("|3.ShippingMethod Management                              |");
             System.out.println("-----------------------------------------------------------");
-            System.out.println("|4.ShippingMethod Management                              |");
-            System.out.println("-----------------------------------------------------------");
-            System.out.println("|5.Payment Management                                     |");
+            System.out.println("|4.Payment Management                                     |");
             System.out.println("-----------------------------------------------------------");
             System.out.println("|0.Return To The Previous Page                            |");
             System.out.println("-----------------------------------------------------------");
@@ -123,20 +127,19 @@ public class Menu {
 
             switch (choice) {
                 case "1":
-
+                    ClearTheScreen.clrscr();
+                    Seller_Management();
                     break;
                 case "2":
 
                     break;
-                case "3":
 
-                    break;
-                case "4":
+                case "3":
                     ClearTheScreen.clrscr();
                     ShippingMethod_Management();
 
                     break;
-                case "5":
+                case "4":
                     ClearTheScreen.clrscr();
                     Payment_Management();
 
@@ -155,6 +158,51 @@ public class Menu {
         }
 
 
+    }
+    public static void Seller_Management()throws SQLException{
+        String choice;
+        while (true) {
+            System.out.println(" ==========================Seller_Management=================================");
+            System.out.println("-----------------------------------------------------------------------------");
+            System.out.println("|1.List Seller                                                              |");
+            System.out.println("-----------------------------------------------------------------------------");
+            System.out.println("|2.List OF Sellers Waiting For Approval                                     |");
+            System.out.println("-----------------------------------------------------------------------------");
+            System.out.println("|3.Seller Account Lock                                                      |");
+            System.out.println("-----------------------------------------------------------------------------");
+            System.out.println("|0.Return To The Previous Page                                              |");
+            System.out.println("-----------------------------------------------------------------------------");
+            System.out.println("   ==>>Inviting You To Choose:            ");
+            choice =sc.nextLine();
+
+            switch (choice) {
+                case "1":
+                    ClearTheScreen.clrscr();
+                    SuppilerBL.show_supplier_view();
+                    break;
+                case "2":
+                    ClearTheScreen.clrscr();
+                    SuppilerBL.show_supplier_status();
+                    SuppilerBL.authentic_seller();
+
+                    break;
+                case "3":
+                    ClearTheScreen.clrscr();
+                    SuppilerBL.show_supplier_view();
+                    SuppilerBL.Lock_seller();
+                    break;
+
+                case "0":
+                    ClearTheScreen.clrscr();
+                    Admin();
+                    break;
+
+                default:
+                    ClearTheScreen.clrscr();
+                    System.out.println("There is no function for this .Re-Enter:");
+                    break;
+            }
+        }
     }
     public static void Payment_Management()throws SQLException{
         String choice;
@@ -291,8 +339,6 @@ public class Menu {
                 case "4":
                     ClearTheScreen.clrscr();
                     Options_Management();
-
-
                     break;
                 case "5":
 
@@ -300,8 +346,6 @@ public class Menu {
                 case "6":
                    ClearTheScreen.clrscr();
                    Product_Options_Management();
-
-
                     break;
                 case "7":
 

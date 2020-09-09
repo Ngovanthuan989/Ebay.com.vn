@@ -26,7 +26,7 @@ public class Order_DetailsBL {
             System.out.println("-----------------------------------------------------");
             System.out.print("  1.Enter Product_ID:");
             int product_id =Integer.parseInt(new Validate().checkINT());
-       odd.setProducts_id(product_id);
+            odd.setProducts_id(product_id);
             odd.setOrder_id(application.order_id);
             System.out.println("-----------------------------------------------------");
             System.out.print("  2.Enter Amount:");

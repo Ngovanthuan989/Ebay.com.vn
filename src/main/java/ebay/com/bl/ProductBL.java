@@ -11,6 +11,7 @@ import ebay.com.UI.CommandLineTable;
 import ebay.com.dal.ProductDAL;
 import ebay.com.persistance.Product;
 import ebay.com.persistance.application;
+import ebay.com.validate.Validate;
 
 public class ProductBL {
 

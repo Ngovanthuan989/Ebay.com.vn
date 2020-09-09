@@ -39,6 +39,28 @@ public class SuppilerDAL {
             }
         }
     }
+    public void update_suppiler_status(Suppiler SP,int sup_id) throws SQLException{
+
+        PreparedStatement preparedStatement = null;
+        Connection connection = JDBCConnection.getJDBConnection();
+
+        try {
+            String sql = "update suppiler set suppiler_status=? where suppiler_id='"+sup_id+"'";
+            preparedStatement = (PreparedStatement) connection.prepareStatement(sql);
+            preparedStatement.setString(1, SP.getSuppiler_status());
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException ex) {
+            //TODO: handle exception
+            ex.printStackTrace();
+        }finally{
+            try {
+                preparedStatement.close();
+            } catch (SQLException ex) {
+                //TODO: handle exception
+            }
+        }
+    }
 
     public ArrayList<Suppiler> SelectSuppiler(String email, String pass) throws SQLException{
         Connection connection = JDBCConnection.getJDBConnection();
@@ -79,6 +101,71 @@ public class SuppilerDAL {
 
         try {
             String sql = "Select * from suppiler where suppiler_id='"+supplierID+"'";
+
+            ResultSet rs = statement.executeQuery(sql);
+
+            while (rs.next()) {
+               int suppiler_id = rs.getInt(1);
+               String suppiler_name = rs.getString(2);
+               String suppiler_address = rs.getString(3);
+               String suppiler_email = rs.getString(4);
+               String suppiler_pass = rs.getString(5);
+               String suppiler_phone = rs.getString(6);
+               String suppiler_status = rs.getString(7);
+
+               List.add(new Suppiler(suppiler_id, suppiler_name, suppiler_address, suppiler_email, suppiler_pass, suppiler_phone, suppiler_status));
+            }
+
+            return List;
+        } catch (SQLException ex) {
+            //TODO: handle exception
+            ex.printStackTrace();
+        }
+
+        return null;
+
+    }
+
+
+    public ArrayList<Suppiler> SelectSuppilerStatus() throws SQLException{
+        Connection connection = JDBCConnection.getJDBConnection();
+        Statement statement = connection.createStatement();
+
+        ArrayList <Suppiler> List = new ArrayList<>();
+
+        try {
+            String sql = "Select * from suppiler where suppiler_status='Đang xử lí' or suppiler_status='Lock up'";
+
+            ResultSet rs = statement.executeQuery(sql);
+
+            while (rs.next()) {
+               int suppiler_id = rs.getInt(1);
+               String suppiler_name = rs.getString(2);
+               String suppiler_address = rs.getString(3);
+               String suppiler_email = rs.getString(4);
+               String suppiler_pass = rs.getString(5);
+               String suppiler_phone = rs.getString(6);
+               String suppiler_status = rs.getString(7);
+
+               List.add(new Suppiler(suppiler_id, suppiler_name, suppiler_address, suppiler_email, suppiler_pass, suppiler_phone, suppiler_status));
+            }
+
+            return List;
+        } catch (SQLException ex) {
+            //TODO: handle exception
+            ex.printStackTrace();
+        }
+
+        return null;
+    }
+    public ArrayList<Suppiler> SelectSuppilerView() throws SQLException{
+        Connection connection = JDBCConnection.getJDBConnection();
+        Statement statement = connection.createStatement();
+
+        ArrayList <Suppiler> List = new ArrayList<>();
+
+        try {
+            String sql = "Select * from suppiler";
 
             ResultSet rs = statement.executeQuery(sql);
 
