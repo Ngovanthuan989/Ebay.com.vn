@@ -34,19 +34,43 @@ public class Address_DetailsBL {
     public static void update_address_details()throws SQLException{
         Address_Details ad = new Address_Details();
         Address_DetailsDAL adt = new Address_DetailsDAL();
+        boolean check = true;
+        while (check) {
+            System.out.println("Enter Address_id:");
+            int address_id = Integer.parseInt(new Validate().checkINT());
 
-        System.out.println("Enter Address_id:");
-        int address_id = Integer.parseInt(new Validate().checkINT());
-        ad.setAddress_id(address_id);
-        ad.setCustomer_id(application.id_customer);
-        System.out.println("Enter Address_Name:");
-        String address_name = new Validate().checkEmpty();
-        ad.setAddress_name(address_name);
+            ADT = new Address_DetailsDAL().select_address_details2();
+            int kt = 0;
+
+            for (int i = 0; i < ADT.size(); i++) {
+                if (ADT.get(i).getAddress_id()==address_id) {
+                    kt = 1;
+
+                }
+            }
+            if (kt == 1) {
+                System.out.println("ID Tồn Tại");
+                check = false;
+                ad.setAddress_id(address_id);
+                ad.setCustomer_id(application.id_customer);
+                System.out.println("Enter Address_Name:");
+                String address_name = new Validate().checkEmpty();
+                ad.setAddress_name(address_name);
 
 
-        ADT.add(ad);
+                ADT.add(ad);
 
-        adt.update_address_details(ad, address_id);
+                adt.update_address_details(ad, address_id);
+
+            } else {
+                System.out.println("ID không tồn tại!Mời Nhập Lại");
+                check = true;
+
+            }
+
+        }
+
+
     }
 
     public static void show_address_details()throws SQLException{

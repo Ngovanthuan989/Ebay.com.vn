@@ -8,16 +8,15 @@ import java.util.Scanner;
 import ebay.com.UI.CommandLineTable;
 import ebay.com.dal.Product_Options_DetailsDAL;
 import ebay.com.persistance.Product_Options_Details;
-import ebay.com.validate.Validate;
+import ebay.com.persistance.application;
 
 public class Product_Options_DetailsBL {
     static List<Product_Options_Details> POD = new ArrayList<>();
     static Scanner sc = new Scanner(System.in);
 
     public static void show_options_details()throws SQLException{
-        System.out.println("Enter Supplier_ID:");
-        int Supplier_ID = Integer.parseInt(new Validate().checkINT());
-        POD = new Product_Options_DetailsDAL().select_options_details(Supplier_ID);
+
+        POD = new Product_Options_DetailsDAL().select_options_details(application.id_supplier);
 
         CommandLineTable CT = new CommandLineTable();
 

@@ -143,6 +143,21 @@ public class ProductBL {
         }
         CT.print();
     }
+    public static void show_product_search()throws SQLException{
+        System.out.println("---------------------------------Search By Product Name-------------------------");
+        System.out.print("-Enter Product_Name:");
+        String product_name = sc.nextLine();
+        PR = new ProductDAL().select_product_search(product_name);
+
+        CommandLineTable CT= new CommandLineTable();
+        CT.setShowVerticalLines(true);
+        CT.setHeaders("Product_ID","Product_Name","Product_price","Promotion_Price");
+        for (int i = 0; i < PR.size(); i++) {
+
+                CT.addRow(String.valueOf(PR.get(i).getProduct_id()),String.valueOf(PR.get(i).getProduct_name()),String.valueOf(PR.get(i).getProduct_price()+" "+"VND"),String.valueOf(PR.get(i).getPromotion_price()+" "+"VND"));
+        }
+        CT.print();
+    }
 
 
     public static void ask()throws SQLException{

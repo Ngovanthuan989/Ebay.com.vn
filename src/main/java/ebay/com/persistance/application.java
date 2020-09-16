@@ -21,7 +21,7 @@ public class application {
 
     public static int order_id;
 
-
+    public static int id_category;
     public static int list_productId;
 
     static ArrayList<Product> PR = new ArrayList<>();

@@ -161,5 +161,45 @@ public class ProductDAL {
          return null;
 
     }
+    public ArrayList<Product>select_product_search(String product_name_like)throws SQLException{
+         Connection connection = JDBCConnection.getJDBConnection();
+         Statement statement = connection.createStatement();
+
+         ArrayList<Product>List = new ArrayList<>();
+
+         try {
+             String sql ="select * from product where product_name like '"+product_name_like+"';";
+             ResultSet rs = statement.executeQuery(sql);
+             while (rs.next()) {
+                int product_id=rs.getInt(1);
+                String product_code =rs.getString(2);
+                String product_name =rs.getString(3);
+                int supplier_id =rs.getInt(4);
+                int category_id=rs.getInt(5);
+                int brand_id=rs.getInt(6);
+                double product_price=rs.getDouble(7);
+                double promotion_price=rs.getDouble(8);
+                String product_desc=rs.getString(9);
+                int product_amount =rs.getInt(10);
+                String product_status =rs.getString(11);
+                String product_date =rs.getString(12);
+
+                List.add(new Product(product_id, product_code, product_name, supplier_id, category_id, brand_id, product_price, promotion_price, product_desc, product_amount, product_status, product_date));
+             }
+             return List;
+         } catch (SQLException ex) {
+             //TODO: handle exception
+             ex.printStackTrace();
+         }finally{
+             try {
+                 statement.close();
+             } catch (SQLException ex) {
+                 //TODO: handle exception
+                 ex.printStackTrace();
+             }
+         }
+         return null;
+
+    }
 
 }

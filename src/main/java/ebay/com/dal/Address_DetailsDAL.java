@@ -86,4 +86,31 @@ public class Address_DetailsDAL {
 
         return null;
     }
+    public ArrayList<Address_Details> select_address_details2() throws SQLException{
+
+        Connection connection = JDBCConnection.getJDBConnection();
+        Statement statement = connection.createStatement();
+
+        ArrayList<Address_Details> List = new ArrayList<>();
+
+        try {
+            String sql ="select * from address_details";
+
+            ResultSet rs = statement.executeQuery(sql);
+
+            while (rs.next()) {
+               int address_id = rs.getInt(1);
+               int customer_id = rs.getInt(2);
+               String address_name = rs.getString(3);
+
+               List.add(new Address_Details(address_id, customer_id, address_name));
+            }
+            return List;
+        } catch (SQLException ex) {
+            //TODO: handle exception
+            ex.printStackTrace();
+        }
+
+        return null;
+    }
 }

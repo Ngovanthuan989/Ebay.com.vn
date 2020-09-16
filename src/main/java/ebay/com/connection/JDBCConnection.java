@@ -20,11 +20,7 @@ public class JDBCConnection {
 
             Connection conn = DriverManager.getConnection(url, user, password);
 
-            if (conn !=null) {
-                System.out.println("Connect to the database");
-            }else{
-                System.out.println("Failed to make connection");
-            }
+
             return conn;
         } catch (ClassNotFoundException e) {
             // TODO Auto-generated catch block

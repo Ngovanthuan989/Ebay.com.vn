@@ -63,10 +63,12 @@ public class Menu {
                 case "2":
                     ClearTheScreen.clrscr();
                     Product_DetailsBL.show_product_details();
-                    ProductBL.ask();
+                    Order_DetailsBL.ask_the_customer();
                     break;
                 case "3":
-
+                    ClearTheScreen.clrscr();
+                    ProductBL.show_product_search();
+                    Order_DetailsBL.ask_the_customer();
 
                     break;
                 case "4":
@@ -104,6 +106,7 @@ public class Menu {
             }
         }
     }
+
     public static void Admin() throws SQLException{
 
         String choice;
@@ -113,11 +116,9 @@ public class Menu {
             System.out.println("-----------------------------------------------------------");
             System.out.println("|1.Seller Management                                      |");
             System.out.println("-----------------------------------------------------------");
-            System.out.println("|2.Customer Management                                    |");
+            System.out.println("|2.ShippingMethod Management                              |");
             System.out.println("-----------------------------------------------------------");
-            System.out.println("|3.ShippingMethod Management                              |");
-            System.out.println("-----------------------------------------------------------");
-            System.out.println("|4.Payment Management                                     |");
+            System.out.println("|3.Payment Management                                     |");
             System.out.println("-----------------------------------------------------------");
             System.out.println("|0.Return To The Previous Page                            |");
             System.out.println("-----------------------------------------------------------");
@@ -131,18 +132,12 @@ public class Menu {
                     Seller_Management();
                     break;
                 case "2":
-
-                    break;
-
-                case "3":
                     ClearTheScreen.clrscr();
                     ShippingMethod_Management();
-
                     break;
-                case "4":
+                case "3":
                     ClearTheScreen.clrscr();
                     Payment_Management();
-
                     break;
                 case "0":
                     ClearTheScreen.clrscr();
@@ -341,7 +336,8 @@ public class Menu {
                     Options_Management();
                     break;
                 case "5":
-
+                    ClearTheScreen.clrscr();
+                    BillBl.show_bill2();
                     break;
                 case "6":
                    ClearTheScreen.clrscr();
@@ -493,6 +489,7 @@ public class Menu {
                     ClearTheScreen.clrscr();
                     OrderBL.update_order();
                     ClearTheScreen.clrscr();
+                    Bi_TTBL.show_bill_details();
                     BillBl.show_bill();
                     Bi_TTBL.show_bil_tt();
                     OrderBL.ask_customer();
@@ -677,6 +674,7 @@ public class Menu {
                     break;
                 case "2":
                     ClearTheScreen.clrscr();
+                    Category_ProductBL.Show_Category_Product();
                     Brand_ProductBL.edit_brand_product();
                     break;
                 case "3":

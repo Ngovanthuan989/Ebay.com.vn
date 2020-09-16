@@ -80,7 +80,7 @@ public class Validate {
 
                  return name;
              } else {
-                 System.out.println("Nhập Sai ! Mời Nhập Lại:");
+                 System.out.println("Không được có chữ với kí tự đặc biệt ! Mời Nhập Lại:");
              }
 
          }

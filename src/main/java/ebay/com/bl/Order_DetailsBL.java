@@ -8,13 +8,17 @@ import java.util.Scanner;
 import ebay.com.UI.ClearTheScreen;
 import ebay.com.UI.Menu;
 import ebay.com.dal.Order_DetailsDAL;
+import ebay.com.dal.ProductDAL;
 import ebay.com.persistance.Order_Details;
+import ebay.com.persistance.Product;
 import ebay.com.persistance.application;
 import ebay.com.validate.Validate;
 
 public class Order_DetailsBL {
 
     static List<Order_Details>ODD = new ArrayList<>();
+    static List<Product> PR = new ArrayList<>();
+
     static Scanner sc = new Scanner(System.in);
 
     public static void insert_order_details()throws SQLException{
@@ -24,36 +28,63 @@ public class Order_DetailsBL {
         boolean check =true;
         while (check) {
             System.out.println("-----------------------------------------------------");
-            System.out.print("  1.Enter Product_ID:");
-            int product_id =Integer.parseInt(new Validate().checkINT());
-            odd.setProducts_id(product_id);
-            odd.setOrder_id(application.order_id);
-            System.out.println("-----------------------------------------------------");
-            System.out.print("  2.Enter Amount:");
-            int amount = Integer.parseInt(new Validate().checkINT());
-            odd.setAmount(amount);
+            boolean kiemtra=true;
+            while (kiemtra) {
+                System.out.print("  1.Enter Product_ID:");
+                int product_id =Integer.parseInt(new Validate().checkINT());
+                odd.setProducts_id(product_id);
+                if (product_id==0) {
+                    ProductBL.show_product_home();
+                    ProductBL.ask();
+                }
+                else{
+                    PR = new ProductDAL().select_productID();
+                    int kt =0;
+                    for (int i = 0; i < PR.size(); i++) {
+                        if (PR.get(i).getProduct_id()==product_id) {
+                            kt = 1;
+                        }
+                    }
+                    if (kt==1) {
+                        System.out.println("Product_ID tồn tại!");
+                        kiemtra=false;
+                        odd.setOrder_id(application.order_id);
+                        System.out.println("-----------------------------------------------------");
+                        System.out.print("  2.Enter Amount:");
+                        int amount = Integer.parseInt(new Validate().checkINT());
+                        odd.setAmount(amount);
 
-            ODD.add(odd);
+                        ODD.add(odd);
 
-            oda.insert_order_details(odd);
-            System.out.print("Do You Want To Buy More(y/n)?.....");
-            String yn = sc.nextLine();
-            switch (yn) {
-                case "y":
-                    ClearTheScreen.clrscr();
-                    check=true;
-                    break;
-                case "n":
-                     ClearTheScreen.clrscr();
-                     System.out.println("The Product You Purchased Above Has Been Added To Your Cart.Please go to cart to pay!...");
-                     check = false;
-                    break;
-                default:
-                    ClearTheScreen.clrscr();
-                    System.out.println("There is no function for this .Re-Enter:");
-                    check=true;
-                    break;
+                        oda.insert_order_details(odd);
+                        System.out.print("Do You Want To Buy More(y/n)?.....");
+                        String yn = sc.nextLine();
+                        switch (yn) {
+                            case "y":
+                                ClearTheScreen.clrscr();
+                                check=true;
+                                break;
+                            case "n":
+                                    ClearTheScreen.clrscr();
+                                    System.out.println("The Product You Purchased Above Has Been Added To Your Cart.Please go to cart to pay!...");
+                                    check = false;
+                                break;
+                            default:
+                                ClearTheScreen.clrscr();
+                                System.out.println("There is no function for this .Re-Enter:");
+                                check=true;
+                                break;
+                        }
+                    }
+                    else{
+                        System.out.println("Product_ID không tồn tại! Mời Nhập Lại");
+                        kiemtra=true;
+                    }
+                }
+
             }
+
+
         }
 
     }
